@@ -176,8 +176,7 @@ class GoogleMapsSimpleGeocode
      */
     public function setAddress($address)
     {
-        $address = preg_replace('/[^a-zа-я0-9., -]+/iu', '', $address);
-        $this->GGeoAddress = $address;
+        $this->GGeoAddress = preg_replace('/[^a-zа-я0-9., -]+/iu', '', $address);
     }
 
     /**
