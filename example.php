@@ -8,6 +8,7 @@
         <input name="address" size="40" value="<?=$_GET['address']?>" /><br />
         <input type="submit" value="Искать!" />
     </form>
+    <pre>
 
     <?php
 
@@ -18,8 +19,8 @@
         $geo = GoogleMapsSimpleGeocode::getInstance();
 
         $geo->setAddress($_GET['address']);
-        $geo->setApiKey('YOU_API_KEY');
-        $geo->serOutput('csv');
+        $geo->setApiKey('API_KEY');
+        $geo->setOutput('csv');
         $geo->setEncoding('utf8');
 
         if($result = $geo->search())

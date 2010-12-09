@@ -7,10 +7,22 @@
  *
  * @package GoogleMapsSimpleGeocode
  * @author  dZ <mail@dotzero.ru>
- * @version 0.3 (9-dec-2010)
+ * @version 0.5 (9-dec-2010)
  * @link	http://dotzero.ru
  * @link	https://github.com/dotzero/GoogleMapsSimpleGeocode/
  * @link    http://code.google.com/intl/ru-RU/apis/maps/documentation/geocoding/
+ *
+ * @example
+ * 	$geo = GoogleMapsSimpleGeocode::getInstance();
+ * 	$geo->setAddress('Москва, Мясницкая ул., дом 60, корпус 1');
+ * 	$geo->setApiKey('API_KEY');
+ * 	$geo->serOutput('csv');
+ * 	$geo->setEncoding('utf8');
+ *
+ * 	if($result = $geo->search())
+ * 		print_r($result);
+ * 	else
+ * 		$geo->errorMessage();
  */
 class GoogleMapsSimpleGeocode
 {
@@ -236,7 +248,7 @@ class GoogleMapsSimpleGeocode
      *
      * @param string $format
      */
-    public function serOutput($format)
+    public function setOutput($format)
     {
         $availableFormats = array('xml', 'csv', 'json');
 
@@ -292,8 +304,8 @@ class GoogleMapsSimpleGeocode
             $result['accuracy'] = $accuracy;
             $result['accuracy_message'] = $this->parseAccuracyCode($accuracy);
 
-            $result['latitude'] = $latitude;
             $result['longitude'] = $longitude;
+            $result['latitude'] = $latitude;
         }
         else
         {
@@ -423,7 +435,7 @@ class GoogleMapsSimpleGeocode
 
 class GeocodeException extends Exception
 {
-    public function __construct($msg, $code, $response = null)
+    public function __construct($msg, $code)
     {
         parent::__construct($msg, $code);
     }
