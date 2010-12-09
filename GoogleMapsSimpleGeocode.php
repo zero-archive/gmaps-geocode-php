@@ -280,7 +280,7 @@ class GoogleMapsSimpleGeocode
      */
     private function parseCSV()
     {
-        list($code, $accuracy, $longitude, $latitude) = explode(',', $this->GGeoRawResponse);
+        list($code, $accuracy, $latitude, $longitude) = explode(',', $this->GGeoRawResponse);
 
         $result = array();
 
@@ -330,8 +330,8 @@ class GoogleMapsSimpleGeocode
                 $placemark['accuracy_message'] = $this->parseAccuracyCode($placemark['accuracy']);
 
                 $coordinates = explode(',', (string) $placemarkObj->Point->coordinates);
-                $placemark['latitude'] = $coordinates[0];
-                $placemark['longitude'] = $coordinates[1];
+                $placemark['longitude'] = $coordinates[0];
+                $placemark['latitude'] = $coordinates[1];
 
                 $result['placemarks'][] = $placemark;
             }
@@ -370,8 +370,8 @@ class GoogleMapsSimpleGeocode
                 $placemark['accuracy'] = intval($placemarkObj->AddressDetails->Accuracy);
                 $placemark['accuracy_message'] = $this->parseAccuracyCode($placemark['accuracy']);
 
-                $placemark['latitude'] = $placemarkObj->Point->coordinates[0];
-                $placemark['longitude'] = $placemarkObj->Point->coordinates[1];
+                $placemark['longitude'] = $placemarkObj->Point->coordinates[0];
+                $placemark['latitude'] = $placemarkObj->Point->coordinates[1];
 
                 $result['placemarks'][] = $placemark;
             }
