@@ -8,8 +8,8 @@
  * @package GoogleMapsSimpleGeocode
  * @author  dZ <mail@dotzero.ru>
  * @version 0.5 (9-dec-2010)
- * @link	http://dotzero.ru
- * @link	https://github.com/dotzero/GoogleMapsSimpleGeocode/
+ * @link    http://dotzero.ru
+ * @link    https://github.com/dotzero/GoogleMapsSimpleGeocode/
  * @link    http://code.google.com/intl/ru-RU/apis/maps/documentation/geocoding/
  *
  * @example
