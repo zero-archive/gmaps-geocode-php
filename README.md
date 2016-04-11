@@ -1,5 +1,6 @@
 Google Maps Simple Geocode
 ==========================
+[![Build Status](https://travis-ci.org/dotzero/gmaps-geocode-php.svg?branch=master)](https://travis-ci.org/dotzero/gmaps-geocode-php)
 
 Класс для реализации геокодирования (преобразования адресов в географические координаты)
 с использованием сервиса геокодирования Google Maps Geocoding.
@@ -10,7 +11,7 @@ Google Maps Simple Geocode
 
     GoogleMapsSimpleGeocode::getInstance();
 
-Основной метод для геокодирования адреса по установленным параметрам. 
+Основной метод для геокодирования адреса по установленным параметрам.
 При использовании параметра `$raw = true` вернет ответ сервиса без обработки.
 
     search($raw = false)
