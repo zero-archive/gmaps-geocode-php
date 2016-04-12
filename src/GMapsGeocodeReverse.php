@@ -10,7 +10,7 @@ namespace dotzero;
  * @package dotzero
  * @version 0.6
  * @author dotzero <mail@dotzero.ru>
- * @link   http://www.dotzero.ru/
+ * @link http://www.dotzero.ru/
  * @link https://github.com/dotzero/gmaps-geocode-php
  * @link https://developers.google.com/maps/documentation/geocoding/intro?hl=en
  *
