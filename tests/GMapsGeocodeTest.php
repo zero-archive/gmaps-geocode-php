@@ -46,13 +46,17 @@ class GMapsGeocodeTest extends PHPUnit_Framework_TestCase
 
     public function testSearch()
     {
-        $result = $this->geo->setAddress('Helsinki')->search();
+        $results = $this->geo->setAddress('Helsinki')->search();
 
-        $this->assertArrayHasKey('address_components', $result);
-        $this->assertArrayHasKey('formatted_address', $result);
-        $this->assertArrayHasKey('geometry', $result);
-        $this->assertArrayHasKey('place_id', $result);
-        $this->assertArrayHasKey('types', $result);
+        $this->assertNotEmpty($results);
+
+        foreach ($results AS $result) {
+            $this->assertArrayHasKey('address_components', $result);
+            $this->assertArrayHasKey('formatted_address', $result);
+            $this->assertArrayHasKey('geometry', $result);
+            $this->assertArrayHasKey('place_id', $result);
+            $this->assertArrayHasKey('types', $result);
+        }
     }
 
     /**

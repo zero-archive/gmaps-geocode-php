@@ -81,6 +81,6 @@ class GMapsGeocodeBase
             throw new GMapsException($result['error_message']);
         }
 
-        return (count($result['results']) == 1) ? array_shift($result['results']) : $result['results'];
+        return $result['results'];
     }
 }
