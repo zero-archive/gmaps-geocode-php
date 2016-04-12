@@ -1,44 +1,91 @@
-Google Maps Simple Geocode
-==========================
+# PHP Google Maps Geocode
+
 [![Build Status](https://travis-ci.org/dotzero/gmaps-geocode-php.svg?branch=master)](https://travis-ci.org/dotzero/gmaps-geocode-php)
+[![Latest Stable Version](https://poser.pugx.org/dotzero/gmaps-geocode/version)](https://packagist.org/packages/dotzero/gmaps-geocode)
+[![License](https://poser.pugx.org/dotzero/gmaps-geocode/license)](https://packagist.org/packages/dotzero/gmaps-geocode)
 
-Класс для реализации геокодирования (преобразования адресов в географические координаты)
-с использованием сервиса геокодирования Google Maps Geocoding.
+A PHP5 library implements Geocoding and Reverse geocoding through The Google Maps Geocoding API.
 
-### Основные методы класса
+Geocoding is the process of converting addresses (like "1600 Amphitheatre Parkway, Mountain View, CA") into geographic coordinates (like latitude 37.423021 and longitude -122.083739). Reverse geocoding is the process of converting geographic coordinates into a human-readable address.
 
-Обращаение к экземпляру класса
+## Usage
 
-    GoogleMapsSimpleGeocode::getInstance();
+To use the Google Maps Geocoding API, you need an API key. To acquire an API key follow [the instructions](https://developers.google.com/maps/documentation/geocoding/get-api-key).
 
-Основной метод для геокодирования адреса по установленным параметрам.
-При использовании параметра `$raw = true` вернет ответ сервиса без обработки.
+### Geocoding (Latitude/Longitude Lookup)
 
-    search($raw = false)
+```php
+try {
+    $result = (new GMapsGeocode('YOUR_GOOGLE_API'))
+        ->setAddress('Helsinki')
+//        ->setRegion('FI')
+        ->setComponents(array(
+            'route' => 'Annegatan',
+            'administrative_area' => 'Helsinki',
+            'country' => 'Finland'
+        ))
+        ->search();
 
-В случае возникновения ошибки метод будет хранить текст ошибки.
+    print_r($result);
+} catch (GMapsException $e) {
+    printf('Error (%d): %s', $e->getCode(), $e->getMessage());
+}
+```
 
-    errorMessage()
+Required method are `setAddress` or `setComponents` in a geocoding request and `setRegion` is optional.
 
-### Методы для установки параметром геокодирования
+[Official documentation](https://developers.google.com/maps/documentation/geocoding/intro?hl=en#ComponentFiltering) contains more about Component Filtering.
 
-Установка адреса, который нужно геокодировать
+### Reverse Geocoding (Address Lookup)
 
-    setAddress($address)
+```php
+try {
+    $geo = (new GMapsGeocodeReverse('YOUR_GOOGLE_API'))
+        ->setLatLng('40.714224', '-73.961452')
+//        ->setPlaceId('ChIJd8BlQ2BZwokRAFUEcm_qrcA')
+        ->search();
 
-Установка Google Api Key
+    print_r($result);
+} catch (GMapsException $e) {
+    printf('Error (%d): %s', $e->getCode(), $e->getMessage());
+}
+```
 
-    setApiKey($apikey)
+Required method are `setLatLng` or `setPlaceId` in a reverse geocoding request.
 
-Исходит ли запрос на геокодирование от устройства с датчиком местоположения
+## Install
 
-    setSensor($flag = false)
+### Via composer:
 
-Установка формата ответа Службы геокодирования. Доступные форматы: `xml`, `csv`, `json`.
-По-умолчанию установлен `csv`.
+```bash
+$ composer require dotzero/gmaps-geocode
+```
 
-    setOutput($format)
+### Without composer
 
-Установка формата кодировки результатов
+Clone the project using:
 
-    setEncoding($charset = 'utf8')
+```bash
+$ git clone https://github.com/dotzero/gmaps-geocode-php/
+```
+
+and include the source files with:
+
+```php
+    require_once("gmaps-geocode-php/src/GMapsException.php");
+    require_once("gmaps-geocode-php/src/GMapsGeocodeBase.php");
+    require_once("gmaps-geocode-php/src/GMapsGeocode.php");
+    require_once("gmaps-geocode-php/src/GMapsGeocodeReverse.php");
+```
+
+## Test
+
+First install the dependencies, and after you can run:
+
+```bash
+GOOGLE_API=YOUR_GOOGLE_API vendor/bin/phpunit
+```
+
+## License
+
+Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
