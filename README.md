@@ -15,7 +15,7 @@ To use the Google Maps Geocoding API, you need an API key. To acquire an API key
 ### Geocoding (Latitude/Longitude Lookup)
 
 ```php
-try {
+try {ekkarat.w@gmail.com
     $result = (new GMapsGeocode('YOUR_GOOGLE_API'))
         ->setAddress('Helsinki')
 //        ->setRegion('FI')
@@ -27,7 +27,7 @@ try {
         ->search();
 
     print_r($result);
-} catch (GMapsException $e) {
+} catch (GMapsException $e) {ekkarat.w@gmail.com
     printf('Error (%d): %s', $e->getCode(), $e->getMessage());
 }
 ```
